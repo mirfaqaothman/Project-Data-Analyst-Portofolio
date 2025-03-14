@@ -1,0 +1,61 @@
+01_PROJECT DA 
+
+Source dataset: 	https://www.kaggle.com/datasets/edisugiarto/unclean-airline-customer-dataset
+Dataset ini berisi data pelanggan maskapai penerbangan dengan informasi seperti tanggal penerbangan pertama, 
+tingkat keanggotaan, lokasi geografis, frekuensi penerbangan, serta pendapatan dalam 1 dan 2 tahun terakhir tinggal 2014. 
+Data ini berisikan raw data sebanyak 62989 raw
+
+Tabel Dataset:
+
+Variable                     Name	Description
+MEMBER_NO	                    Membership Card Number
+FFP_DATE	                    Enrollment Date
+FIRST_FLIGHT_DATE	            First Flight Date
+GENDER	                      Gender
+FFP_TIER	                    Membership Tier
+WORK_CITY	                    Work City
+WORK_PROVINCE	                Work Province
+WORK_COUNTRY	                Work Country
+age	                          Age
+LOAD_TIME	                    Observation window end time
+FLIGHT_COUNT	                Number of flights
+LAST_TO_END+	                Time from last flight to observation window end
+avg_discount	                Average discount rate
+SUM_YR_1	                    Total fare for the first year
+SUM_YR_2	                    Total fare for the second year
+SEG_KM_SUM	                  Total flight distance in observation window
+LAST_FLIGHT_DATE	            Last flight date
+AVG_INTERVAL	                Average time interval between flights
+MAX_INTERVAL	                Maximum time interval between flights in observation window
+EXCHANGE_COUNT	              Number of points exchanges
+Points_Sum	                  Total cumulative points
+BP_SUM	                      Total basic points in observation window
+Point_NotFlight	               Number of non-flight point changes
+
+Dari dataset tersebut analisis yang dilakukan adalah:
+1.	Menganalisis Loyalitas Pelanggan:
+      a.	Menghitng selisih antara FFP_DATE dan LOAD_TIME untuk mengetahui berapa lama seseorang menjadi member
+      b.	Mengetaui frekuensi penerbangan dengan Flight_Count untuk mengetahui pemetaan seberapa sering pelanggan terbang
+2.	Melihat asal negara/provinsi/kota member yang paling banyak melakukan penerbangan dan yang kurang melakukan penerbangan
+      a.	Bisa menjadi masukan untuk maskapai untuk memutuskan menambah/melakukan marketing di tempat tertentu
+3.	Analisi Pengeluaran dan Diskon
+      a.	Pengeluaran taunan : Menggunaan SUM_SY_1 dan SUM_YR_2 untuk melihat pola belanja tiket pelanggan dalam 2 tahun pertama keanggotaan
+      b.	Rata-raa diskon yang diterima: menggunakan avg_discount. Untuk melihat beapa besar rata-rata diskon yang diterima pelanggan
+      c.	Hubungan antara tangkat keanggotaan dan pengeluaran: melihat apalah pelanggan dengan FFP_TIER yang lebih tinggi menghabiskan banyak uang. 
+4.	Analisis Profitabilitas dan pengeluaran: Mengetahui sumber pendapatan utama dan peluang peningkatan revenue
+      a.	Pelanggan dengan pendapatan tertinggi: menggunakan SUM_YR_1 dan SUM_YR_2 untuk melihat pola belanja pelanggan
+      b.	Pengaruh diskon terhadap pengluaran: Hubungan avg_discount dengan SUM_YR_1 dan SUM_YR_2 untuk melihat apakah diskon meningkatkan total pengeluaran
+      c.	Tren pengeluaran baru vs lama: membandingkan pengeluaran pelanggan dengan First_flight_date untuk melihat apakah pelangan baru lebih banyak belanja dibandingkan lama
+Software atau tools yang digunakan:
+1.	Mysql
+2.	Tableau
+
+I.	Melakukan cleansing Data:
+    a.	Mengecek apakah ada data yang double pada column member
+    b.	Mengseragamkan penulisan tanggal pada beberapa column, 
+        seperti dalam satu column ada yang penulisannya YYYY/MM/DD 
+        ada juga yang MM/DD/YYY menjadi seragam
+    c.	Mengganti tipe data dari text menjadi date 
+    d.	Melakukan pembersihan data di clumn WORK_COUNTRY, WORK_PROVINCE, 
+        WORK_CITY, agar datanya konsisten, misal dari singkatan USA 
+        dan United stated, dibuat seragam. 
